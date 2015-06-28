@@ -1,0 +1,666 @@
+#include <iostream>
+#include <string>
+ 
+using namespace std;
+
+class PizzaOrder
+{
+public:
+   PizzaOrder(int size);
+   bool setSize(int size);
+   int getSize() { return size; }
+   static string toppingsOffered[7];
+   static double toppingBaseCost;
+   static double basePrice;
+   static const int MAX_NUMTOPPINGS = 5;
+   string addTopping(string topping);
+   string addTopping(int n);
+   double getPrice();
+   string stringizeSize();
+   string getToppings();
+   void displayPizza();
+   int getNumToppings(){ return numToppings; } 
+   
+private:
+   int size;
+   int numToppings = 0;
+   int numCounter();
+   double mediumConvFactor = 1.15;
+   double largeConvFactor = 1.25;
+   string toppings[MAX_NUMTOPPINGS]; 
+};
+
+int main()
+{
+   while (true)
+   {
+      string getSizeInput;
+      cout << "Type '0' to Exit Program\n";
+      cout << "Select a Pizza Size (Small,Medium,Large): ";
+      getline(cin, getSizeInput);
+      char sizeInput = getSizeInput[0];
+      if (sizeInput == 's' || sizeInput == 'S')
+      {
+         int size = 1;
+         PizzaOrder testOrder(size);
+         testOrder.displayPizza();
+         //for (int i = 0; i < 5; i++)
+         int x = 0;
+         while (true)
+         {
+            if (x == 5)
+            {
+               cout << "Max Toppings Reached...\n\n";
+               break;
+            }
+            string topInput;
+            cout << "Please select a single topping by its designated " 
+               "number to add to your Pizza."
+               << "\nEnter '0' if finished.\n";
+            cout << "1. Pepperoni\n2. Ham\n3. Pinapple\n4. Mushrooms"
+               << "\n5. Olives\n6. Bell Peppers\n7. Onions\n";
+            cout << "Item Selection: ";
+            getline(cin, topInput);
+            if (topInput == "1")
+            {
+               testOrder.addTopping(0);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "2")
+            {
+               testOrder.addTopping(1);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "3")
+            {
+               testOrder.addTopping(2);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "4")
+            {
+               testOrder.addTopping(3);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "5")
+            {
+               testOrder.addTopping(4);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "6")
+            {
+               testOrder.addTopping(5);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "7")
+            {
+               testOrder.addTopping(6);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "0")
+            {
+               testOrder.displayPizza();
+               cout << "Toppings Complete...\n\n";
+               break;
+            }
+            else
+            {
+               cout << "Please Enter an Appropriate Input!\n";
+            }
+         }
+      }
+      else if (sizeInput == 'm' || sizeInput == 'M')
+      {
+         int size = 2;
+         PizzaOrder testOrder(size);
+         testOrder.displayPizza();
+         int x = 0;
+         while (true)
+         {
+            if (x == 5)
+            {
+               cout << "Max Toppings Reached...\n\n";
+               break;
+            }
+            string topInput;
+            cout << "Please select a single topping by its designated "
+               "number to add to your Pizza."
+               << "\nEnter '0' if finished.\n";
+            cout << "1. Pepperoni\n2. Ham\n3. Pinapple\n4. Mushrooms"
+               << "\n5. Olives\n6. Bell Peppers\n7. Onions\n";
+            cout << "Item Selection: ";
+            getline(cin, topInput);
+            if (topInput == "1")
+            {
+               testOrder.addTopping(0);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "2")
+            {
+               testOrder.addTopping(1);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "3")
+            {
+               testOrder.addTopping(2);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "4")
+            {
+               testOrder.addTopping(3);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "5")
+            {
+               testOrder.addTopping(4);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "6")
+            {
+               testOrder.addTopping(5);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "7")
+            {
+               testOrder.addTopping(6);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "0")
+            {
+               testOrder.displayPizza();
+               cout << "Toppings Complete...\n\n";
+               break;
+            }
+            else
+            {
+               cout << "Please Enter an Appropriate Input!\n";
+            }
+         }
+      }
+      else if (sizeInput == 'l' || sizeInput == 'L')
+      {
+         int size = 3;
+         PizzaOrder testOrder(size);
+         testOrder.displayPizza();
+         int x = 0;
+         while (true)
+         {
+            if (x == 5)
+            {
+               cout << "Max Toppings Reached...\n\n";
+               break;
+            }
+            string topInput;
+            cout << "Please select a single topping by its designated "
+               "number to add to your Pizza."
+               << "\nEnter '0' if finished.\n";
+            cout << "1. Pepperoni\n2. Ham\n3. Pinapple\n4. Mushrooms"
+               << "\n5. Olives\n6. Bell Peppers\n7. Onions\n";
+            cout << "Item Selection: ";
+            getline(cin, topInput);
+            if (topInput == "1")
+            {
+               testOrder.addTopping(0);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "2")
+            {
+               testOrder.addTopping(1);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "3")
+            {
+               testOrder.addTopping(2);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "4")
+            {
+               testOrder.addTopping(3);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "5")
+            {
+               testOrder.addTopping(4);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "6")
+            {
+               testOrder.addTopping(5);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "7")
+            {
+               testOrder.addTopping(6);
+               testOrder.displayPizza();
+               x++;
+            }
+            else if (topInput == "0")
+            {
+               testOrder.displayPizza();
+               cout << "Toppings Complete...\n\n";
+               break;
+            }
+            else
+            {
+               cout << "Please Enter an Appropriate Input!\n";
+            }
+         }
+      }
+      else if (sizeInput == '0')
+      {
+         cout << "\nPizza Order Complete...\n\n";
+         break;
+      }
+      else
+      {
+         cout << "Please Enter an appropriate Input. \n";
+      }
+         
+   }
+ 
+   system("pause");
+   return 0;
+}
+//DEFINITIONS-----------------
+
+PizzaOrder::PizzaOrder(int InputSize)
+{
+   setSize(InputSize);
+}
+
+bool PizzaOrder::setSize(int inputSize)
+{
+   size = inputSize;
+   return true;
+}
+
+string PizzaOrder::toppingsOffered[7] = { "pepperoni", "ham", "pinapple",
+"mushrooms", "olives", "bell peppers", "onions" };
+
+double PizzaOrder::toppingBaseCost = .5;
+
+double PizzaOrder::basePrice = 5;
+
+int PizzaOrder::numCounter()
+{
+   //built to count numTopping
+   return numToppings++;
+}
+
+string PizzaOrder::addTopping(int n)
+{
+   toppings[numToppings] = toppingsOffered[n];
+   numCounter(); 
+   return toppings[numToppings-1]; 
+   
+}
+
+string PizzaOrder::addTopping(string topping)
+{
+   toppings[numToppings] = topping;
+   numCounter();
+   return toppings[numToppings-1];
+}
+
+double PizzaOrder::getPrice()
+{
+   double sizeCost;
+   double topCost = numToppings * toppingBaseCost;
+   double finalCost;
+   if (size == 1)
+   {
+      sizeCost =  1;
+   }
+   else if (size == 2)
+   {
+      sizeCost = mediumConvFactor;
+   }
+   else if (size == 3)
+   {
+      sizeCost = largeConvFactor;
+   }
+   finalCost = sizeCost*(basePrice + topCost);
+   return finalCost;
+
+}
+
+string PizzaOrder::stringizeSize()
+{
+   double sizeCost;
+   if (size == 1)
+   {
+      return "small";
+   }
+   else if (size == 2)
+   {
+      return "medium";
+   }
+   else if (size == 3)
+
+   {
+      return "large";
+   }
+
+}
+
+string PizzaOrder::getToppings()
+{
+   string listString;
+   for (int i = 0; i < numToppings; i++)
+   {
+      listString += toppings[i] + ", ";
+   }
+   return listString;
+}
+
+void PizzaOrder::displayPizza()
+{
+   cout << "\n";
+   cout << "Current Pizza: " << "\n" << "Size: " << stringizeSize() << "\n"
+      << "Toppings: " << getToppings() << "\n" << "Cost: $"
+      << getPrice() << "\n";
+   cout << "\n";
+}
+
+/*-------------------------------------TEST RUN -------------------------
+Type '0' to Exit Program
+Select a Pizza Size (Small,Medium,Large): sml
+
+Current Pizza:
+Size: small
+Toppings:
+Cost: $5
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 1
+
+Current Pizza:
+Size: small
+Toppings: pepperoni,
+Cost: $5.5
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 2
+
+Current Pizza:
+Size: small
+Toppings: pepperoni, ham,
+Cost: $6
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 3
+
+Current Pizza:
+Size: small
+Toppings: pepperoni, ham, pinapple,
+Cost: $6.5
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 4
+
+Current Pizza:
+Size: small
+Toppings: pepperoni, ham, pinapple, mushrooms,
+Cost: $7
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 0
+
+Current Pizza:
+Size: small
+Toppings: pepperoni, ham, pinapple, mushrooms,
+Cost: $7
+
+Toppings Complete...
+
+Type '0' to Exit Program
+Select a Pizza Size (Small,Medium,Large): MeDiUm
+
+Current Pizza:
+Size: medium
+Toppings:
+Cost: $5.75
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 1
+
+Current Pizza:
+Size: medium
+Toppings: pepperoni,
+Cost: $6.325
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 2
+
+Current Pizza:
+Size: medium
+Toppings: pepperoni, ham,
+Cost: $6.9
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 3
+
+Current Pizza:
+Size: medium
+Toppings: pepperoni, ham, pinapple,
+Cost: $7.475
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 4
+
+Current Pizza:
+Size: medium
+Toppings: pepperoni, ham, pinapple, mushrooms,
+Cost: $8.05
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 5
+
+Current Pizza:
+Size: medium
+Toppings: pepperoni, ham, pinapple, mushrooms, olives,
+Cost: $8.625
+
+Max Toppings Reached...
+
+Type '0' to Exit Program
+Select a Pizza Size (Small,Medium,Large): L
+
+Current Pizza:
+Size: large
+Toppings:
+Cost: $6.25
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 7
+
+Current Pizza:
+Size: large
+Toppings: onions,
+Cost: $6.875
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 6
+
+Current Pizza:
+Size: large
+Toppings: onions, bell peppers,
+Cost: $7.5
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 5
+
+Current Pizza:
+Size: large
+Toppings: onions, bell peppers, olives,
+Cost: $8.125
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 4
+
+Current Pizza:
+Size: large
+Toppings: onions, bell peppers, olives, mushrooms,
+Cost: $8.75
+
+Please select a single topping by its designated number to add to your Pizza.
+Enter '0' if finished.
+1. Pepperoni
+2. Ham
+3. Pinapple
+4. Mushrooms
+5. Olives
+6. Bell Peppers
+7. Onions
+Item Selection: 0
+
+Current Pizza:
+Size: large
+Toppings: onions, bell peppers, olives, mushrooms,
+Cost: $8.75
+
+Toppings Complete...
+
+Type '0' to Exit Program
+Select a Pizza Size (Small,Medium,Large): 0
+
+Pizza Order Complete...
+
+Press any key to continue . . .
+
+*/
+
+
+
+
