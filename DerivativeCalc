@@ -1,0 +1,98 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+//THIS PROJECT IS STILL INCOMPLETE!
+
+//Class Prototype-------------------------------
+class Derivative
+{
+public:
+   Derivative(string input);
+   bool setInput(string input);
+   
+   string getInput() { return userInput; }
+   
+
+   void identifier(string input);
+
+private:
+   string userInput;
+   int numArray[5];
+
+};
+
+//Main Program-------------------------------
+int main()
+{
+   string userInput;
+   cout << "Input: ";
+   getline(cin, userInput);
+   Derivative testClass(userInput);
+   testClass.identifier(userInput);
+   system("pause");
+   return 0;
+}
+
+//Definitions -----------------
+Derivative::Derivative(string input)
+{
+   setInput(input);
+}
+
+bool Derivative::setInput(string input)
+{
+   userInput = input;
+   return true;
+}
+
+void Derivative::identifier(string input)
+{
+   
+   for (int i = 0; i < input.length(); i++) //identifies number in string 
+   {
+      if (input[i] == '0' || input[i] == '1' || input[i] == '2' ||
+         input[i] == '3' || input[i] == '4' || input[i] == '5' ||
+         input[i] == '6' || input[i] == '7' || input[i] == '8' ||
+         input[i] == '9')
+      {
+         int x=0;
+         int numPlacer[10];
+         int outPlacer = input[i] - 48; //converts char to int
+         numPlacer[x] = outPlacer;
+         cout << numPlacer[x];
+         
+         while (true) //searches for more numbers following initial number
+         { 
+            i++;
+            x++;
+            if (input[i] == '0' || input[i] == '1' ||
+               input[i] == '2' || input[i] == '3' ||
+               input[i] == '4' || input[i] == '5' ||
+               input[i] == '6' || input[i] == '7' ||
+               input[i] == '8' || input[i] == '9')
+            {
+               int inPlacer = input[i] - 48; //converts char to int
+               numPlacer[x] = inPlacer; //apends additional numbers to holder  
+               cout << numPlacer[x];
+               cout << numPlacer[x] + numPlacer[x - 1];
+            }
+            else if (input[i] == 'x' || input[i] == 'X')
+            {
+               cout << "\n" << numPlacer;
+               break;
+            }
+            else
+            {
+               cout << "\n" << numPlacer;
+               break;
+            }     
+         }    
+      }
+      else
+      {
+         break;
+      }
+  }
+   
+}
