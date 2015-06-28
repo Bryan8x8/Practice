@@ -1,0 +1,268 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+#include <cstdlib>
+#include <ctime>
+#include <dos.h>
+#include <windows.h>
+using namespace std;
+
+int getBet()
+{
+   int userBet;
+   cout << "*** Welcome to the CS002A Slot Machine! ***\n";
+   cout << "Please enter a bet (1-100): ";
+   cout << "\nEnter 0 if you would like to exit. \n";
+   cout << "Bet : ";
+   cin >> userBet;
+   if (userBet>0 && userBet<=100)
+   {
+      cout << "You entered : " << userBet << " \n";
+   }
+   else if (userBet == 0)
+   {
+      cout << "\nSuccessfully Exited CS002A Slot Machine!\n";
+   }
+  
+   return userBet;
+}
+
+string pullOne()
+{
+   string pullResult;
+   srand(time(0)); //seeds random int using time
+   int pull = 1+(rand() % 4); //Selects random int 1-4
+   switch (pull)
+   {
+   case 1:
+      pullResult = "BAR";
+      break;
+   case 2:
+      pullResult = "Cherries";
+      break;
+   case 3:
+      pullResult = "7";
+      break;
+   case 4:
+      pullResult = "(space)";
+      break;
+   }
+
+   return pullResult;
+}
+
+int getPayMultiplier(string x, string y, string z)
+{
+   int multiplier;
+   if (x == "Cherries" && y != "Cherries")
+   {
+      multiplier = 3;
+   }
+   else if (x == "Cherries" && y == "Cherries" && z != "Cherries")
+   {
+      multiplier = 10;
+   }
+   else if (x == "Cherries" && y == "Cherries" && z == "Cherries")
+   {
+      multiplier = 20;
+   }
+   else if (x == "BAR" && y == "BAR" && z == "BAR")
+   {
+      multiplier = 35;
+   }
+   else if (x == "7" && y == "7" && z == "7")
+   {
+      multiplier = 50;
+   }
+   else
+   {
+      multiplier = 0;
+   }
+   return multiplier;
+}
+
+void displayWin(string x, string y, string z, int winnings)
+{
+   cout << "Whhhrllll....and your pull is...\n";
+   Sleep(1000); //asthetic, serve no purpose in actual computation 
+   cout << x << "   ";
+   Sleep(1000);
+   cout << y << "   ";
+   Sleep(1000);
+   cout << z << "\n";
+   Sleep(1000);
+
+   if (winnings > 0)
+   {
+      cout << "You Won " << winnings << "!\n\n";
+   }
+   else if (winnings == 0)
+   {
+      cout << "Sorry, You Lose\n\n";
+   }
+}
+
+int main()
+{
+   while (bool play = true)
+   {
+      int bet = getBet();
+      if (bet == 0)
+      {
+         play = false;
+         break; 
+      }
+      else if (bet <= 100 && bet > 0)
+      {
+         string s1 = pullOne();
+         Sleep(1000); 
+         //pauses program, allows time() to recieve differnt input
+         cout << ". ";
+         string s2 = pullOne();
+         Sleep(1000);
+         cout << ". ";
+         string s3 = pullOne();
+         Sleep(1000);
+         cout << ". \n";
+         int winnings = bet * getPayMultiplier(s1, s2, s3);
+         displayWin(s1, s2, s3, winnings);
+      }
+      else
+      {
+         cin.clear(); //clears input
+         cin.ignore(100, '\n');
+         // this will prompt program to ignore all incoming chars
+         // this will break infinite loop in case of char input
+         cout << "*** Invalid Input***\n\n";   
+      }
+   }
+   system("pause");
+   return(0);
+}
+
+/* ---------------------run-------------------
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : invalid input test
+*** Invalid Input***
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : -10
+*** Invalid Input***
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 101
+*** Invalid Input***
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 30
+You entered : 30
+. . .
+Whhhrllll....and your pull is...
+(space)   7   7
+Sorry, You Lose
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 40
+You entered : 40
+. . .
+Whhhrllll....and your pull is...
+BAR   (space)   7
+Sorry, You Lose
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 50
+You entered : 50
+. . .
+Whhhrllll....and your pull is...
+Cherries   BAR   BAR
+You Won 150!
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 60
+You entered : 60
+. . .
+Whhhrllll....and your pull is...
+(space)   7   Cherries
+Sorry, You Lose
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 70
+You entered : 70
+. . .
+Whhhrllll....and your pull is...
+Cherries   BAR   BAR
+You Won 210!
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 80
+You entered : 80
+. . .
+Whhhrllll....and your pull is...
+(space)   (space)   7
+Sorry, You Lose
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 90
+You entered : 90
+. . .
+Whhhrllll....and your pull is...
+(space)   (space)   7
+Sorry, You Lose
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 100
+You entered : 100
+. . .
+Whhhrllll....and your pull is...
+Cherries   BAR   (space)
+You Won 300!
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 1
+You entered : 1
+. . .
+Whhhrllll....and your pull is...
+(space)   7   7
+Sorry, You Lose
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : *** Invalid Input***
+
+*** Welcome to the CS002A Slot Machine! ***
+Please enter a bet (1-100):
+Enter 0 if you would like to exit.
+Bet : 0
+
+Successfully Exited CS002A Slot Machine!
+Press any key to continue . . .
+--------------------run--------------*/
